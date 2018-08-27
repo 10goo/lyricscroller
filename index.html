@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lyric Scroller</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #333;
+            display: flex;
+        }
+        .lyrics {
+            white-space: pre;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .controlls {
+            position: fixed;
+            padding-left: 1rem;
+        }
+        .ctrl-button {
+            color: #555;
+            font-size: 3rem;
+            cursor: pointer;
+
+        }
+        .ctrl-button:hover {
+            color: #999;
+        }
+        .ctrl-button:active {
+            color: #ccc;
+        }
+        #slider {
+            background: none;
+            transform: translate(-87px, 150px) rotate(90deg);
+            transform-origin: 50% 50%;
+            opacity: 0.2;
+        }
+        #slider:hover {
+            cursor: pointer;
+            opacity: 0.6;
+        }
+        #slider:active {
+            opacity: 1;
+        }
+        #slider-value {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="controlls">
+        <div class="ctrl-button" id="menu">
+            <i class="material-icons">menu</i>
+        </div>
+        <div class="ctrl-button" id="to-top">
+            <i class="material-icons">expand_less</i>                
+        </div>
+        <div class="ctrl-button" id="play-pause">
+            <i class="material-icons">play_arrow</i>
+        </div>
+        <input id="slider" type="range" min="10" max="300" step="10" value="100">
+        <div id="slider-value">100</div>
+    </div>
+    <div class="lyrics">
+        I watch you grow away from me in photographs
+        And memories like spies
+        And salt betrays my eyes again
+        I started losing sleep and gaining weight
+        And wishing I was was ten again
+        So I could be your friend again
+        
+        These days we go to waste like wine
+        That's turned to turpentine
+        It's six AM and I'm all messed up
+        I didn't mean to waste your time
+        So I'll fall back in line
+        But I'm warning you we're growing up
+        
+        I heard you found some pretty words to say
+        You found your little game to play
+        And there's no one allowed in
+        Then just when we believe we could be great
+        Reality it permeates
+        And conquers from within again
+        
+        These days we go to waste like wine
+        That's turned to turpentine
+        It's six a.m and I'm all messed up
+        I didn't mean to waste your time
+        So I'll fall back in line
+        But I'm warning you we're growing up
+        
+        We're OK I know we're OK
+        
+        These days we go to waste like wine
+        That's turned to turpentine
+        It's six AM and I'm all messed up
+        I didn't mean to waste your time
+        So I'll fall back in line
+        But I'm warning you we're growing up
+    </div>
+
+    <script>
+        let scrolling = false;
+        let tempo = 200;
+        let menuButton = document.querySelector('#menu');
+        let toTopButton = document.querySelector('#to-top');
+        let playPauseButton = document.querySelector('#play-pause');
+        let slider = document.querySelector('#slider');
+        let sliderValue = document.querySelector('#slider-value')
+
+        menuButton.addEventListener('click', () => { console.log('menu') });
+        toTopButton.addEventListener('click', () => { scrollToTop() });
+        playPauseButton.addEventListener('click', () => { playPause() });
+        slider.addEventListener('change', ()=> {
+            sliderValue.innerHTML = 310 - slider.value;
+            tempo = slider.value;
+        });
+        
+        let scroll = () => {
+            window.scrollBy(0,1);
+            scrolldelay = setTimeout(scroll, tempo);
+        }
+        let scrollToTop = () => {
+            window.scrollTo(0, 0);
+        }
+        let pauseScrolling = () => {
+            clearTimeout(scrolldelay);
+        }
+        let playPause = () => {
+            let result = scrolling ? pauseScrolling() : scroll();
+            // Change icon
+            let icon = document.querySelector('#play-pause i');
+            icon.innerHTML = scrolling ? 'play_arrow' : 'pause';
+            scrolling = !scrolling;
+            return result;
+        }
+
+        scrollToTop();
+    </script>
+</body>
+</html>
