@@ -8,7 +8,6 @@
     --icon-color-active: #ccc;
     --opacity-main: 0.2;
     --opacity-hover: 0.6;
-
 }
 
 html, body {
@@ -31,24 +30,26 @@ html, body {
 }
 .controlls {
     position: fixed;
-    padding-left: 1rem;
+    width: 4rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .ctrl-button {
     color: var(--icon-color-main);
     font-size: 3rem;
     cursor: pointer;
-
 }
 .ctrl-button:hover {
     color: var(--icon-color-hover);
 }
-.ctrl-button:active {
+/* .ctrl-button:active {
     color: var(--icon-color-active);
-}
+} */
 #slider {
     background: none;
-    transform: translate(-87px, 150px) rotate(-90deg);
-    transform-origin: 50% 50%;
+    transform: rotate(-90deg) translateX(-90%);
     opacity: var(--opacity-main);
 }
 #slider:hover {
