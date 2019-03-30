@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload</title>   
+    <link href="./style.css" rel="stylesheet">
+
+    <style>
+        .input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+        input, textarea {
+            width: 80%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="input">
+        <input type="text" id="titleId" placeholder="Title">
+        <input type="text" id="artistId" placeholder="Artist">
+        <textarea name="lyricsId" id="lyricsId" cols="30" rows="10"></textarea>
+        <button id="submit-button">Submit</button>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- FIREBASE SERVICES -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script> -->
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDT_CAB2OR-FlHCJ0Zpwn_NSuBn-tlHwsc",
+        authDomain: "inspirationalquotes-6f0d4.firebaseapp.com",
+        databaseURL: "https://inspirationalquotes-6f0d4.firebaseio.com",
+        projectId: "inspirationalquotes-6f0d4",
+        storageBucket: "inspirationalquotes-6f0d4.appspot.com",
+        messagingSenderId: "366125632349"
+      }
+      firebase.initializeApp(config)
+    </script>
+    <script>
+        let upload_lyrics = document.querySelector('#lyricsId')
+        let upload_title = document.querySelector('#titleId')
+        let upload_artist = document.querySelector('#artistId')
+        let submitButton = document.querySelector('#submit-button')
+        submitButton.addEventListener('click', () => {
+            let data = {
+                title: upload_title.value,
+                artist: upload_artist.value,
+                lyrics: upload_lyrics.value,
+                tempo: 160
+            }
+            
+            // window.location = './index.html'
+        })
+
+    </script>
+</body>
+</html>

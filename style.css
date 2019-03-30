@@ -23,10 +23,11 @@ html, body {
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
 }
 .lyrics {
-    white-space: pre;
+    /* white-space: pre; */
     color: var(--text-color);
     font-size: 2rem;
     padding: 1rem;
+    margin-left: 4rem;
 }
 .controlls {
     position: fixed;
@@ -44,9 +45,6 @@ html, body {
 .ctrl-button:hover {
     color: var(--icon-color-hover);
 }
-/* .ctrl-button:active {
-    color: var(--icon-color-active);
-} */
 #slider {
     background: none;
     transform: rotate(-90deg) translateX(-90%);

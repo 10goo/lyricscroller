@@ -9,6 +9,7 @@
     <link href="./style.css" rel="stylesheet">
 </head>
 <body>
+    <!-- CONTROLS MENU -->
     <div class="controlls">
         <div class="ctrl-button" id="menu">
             <i class="material-icons">menu</i>
@@ -25,12 +26,50 @@
         <input id="slider" type="range" min="10" max="300" step="10" value="100">
         <div id="slider-value">100</div>
     </div>
+
+    <!-- MAIN PAGE WITH LYRICS -->
     <div class="lyrics"></div>
+
+    <!-- OVERLAY -->
     <div id="overlay">
         <i class="material-icons" id="close-overlay">close</i>
         <ul id="song-list"></ul>
     </div>
-
+    
+    <!-- SCRIPTS -->
     <script src="./main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- FIREBASE SERVICES -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script> -->
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDT_CAB2OR-FlHCJ0Zpwn_NSuBn-tlHwsc",
+        authDomain: "inspirationalquotes-6f0d4.firebaseapp.com",
+        databaseURL: "https://inspirationalquotes-6f0d4.firebaseio.com",
+        projectId: "inspirationalquotes-6f0d4",
+        storageBucket: "inspirationalquotes-6f0d4.appspot.com",
+        messagingSenderId: "366125632349"
+      }
+      firebase.initializeApp(config)
+
+
+      let songs = []
+
+      async function runScript() {
+        const snapshot = await firebase.firestore().collection('lyrics').get()
+        snapshot.docs.map(doc => {
+            songs.push(doc.data())
+        })
+        initialize()
+    }
+
+    runScript()
+    </script>
+
 </body>
 </html>
